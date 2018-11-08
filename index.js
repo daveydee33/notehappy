@@ -1,5 +1,12 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const keys = require('./config/keys');
 require('./services/passport'); // make sure to use this file, but we're not exporting anything from it, so we don't need to assign to any variable.
+
+mongoose.connect(
+  keys.mongoURI,
+  { useNewUrlParser: true },
+);
 
 const app = express();
 

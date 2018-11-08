@@ -12,8 +12,10 @@ passport.use(
       clientSecret: keys.googleClientSecret,
       callbackURL: '/auth/google/callback',
     },
-    accessToken => {
-      console.log(accessToken);
+    (accessToken, refreshToken, profile, done) => {
+      console.log('access token: ', accessToken);
+      console.log('refresh token: ', refreshToken);
+      console.log('profile: ', profile);
     },
   ),
 );
@@ -25,12 +27,7 @@ app.get(
   }),
 );
 
-app.get('/auth/google/callback', (req, res) => {
-  // TESTING that we can make it this far.
-  // Need to add the configurations in the Google developer console to allow the development and production domains
-  console.log('Redirect successful to callback URL');
-  res.json('Redirect successful to the callback URL!');
-});
+app.get('/auth/google/callback', passport.authenticate('google'));
 
 const PORT = process.env.PORT || 5000; // PORT value set when deployed on Heroku.
 app.listen(PORT);

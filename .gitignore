@@ -1,5 +1,5 @@
 ## CUSTOM stuff that I added for this project
-config/keys.js
+dev.js
 
 
 # Everything below here is default .gitignore stuff for a Node project - created by GitHub

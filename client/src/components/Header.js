@@ -22,8 +22,7 @@ class Header extends Component {
               {/* Collections */}
               <li className="nav-item">
                 <a className="nav-link" href="#">
-                  {' '}
-                  Profiles
+                  Dashboard
                 </a>
               </li>
             </ul>

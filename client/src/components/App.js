@@ -7,7 +7,6 @@ const ItemNew = () => <h2>ItemNew</h2>;
 const Landing = () => <h2>Landing</h2>;
 
 const App = () => {
-  // return <div>Hi There!</div>;
   return (
     <div>
       <BrowserRouter>

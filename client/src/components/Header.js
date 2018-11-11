@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
   renderContent() {
@@ -11,9 +12,9 @@ class Header extends Component {
           <ul className="navbar-nav ml-auto">
             {/* Register */}
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="#">
                 Register
-              </a>
+              </Link>
             </li>
             {/* Login */}
             <li className="nav-item">
@@ -43,9 +44,10 @@ class Header extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
         <div className="container">
-          <a href="/" className="navbar-brand">
+          {/* If user logged in, take them to /items.  Otherwise, take them to '/' */}
+          <Link to={this.props.auth ? '/items' : '/'} className="navbar-brand">
             NoteHappy
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -59,9 +61,9 @@ class Header extends Component {
             <ul className="navbar-nav mr-auto">
               {/* Collections */}
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="#">
                   Dashboard
-                </a>
+                </Link>
               </li>
             </ul>
 

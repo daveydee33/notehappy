@@ -1,4 +1,5 @@
 const passport = require('passport');
+const requireLogin = require('../middlewares/requireLogin');
 
 module.exports = app => {
   app.get(
@@ -21,8 +22,18 @@ module.exports = app => {
     res.redirect('/');
   });
 
-  // Test to see user data if logged in
+  // Get current logged in user data
   app.get('/api/current_user', (req, res) => {
     res.send(req.user);
   });
+
+  // // TEST private route
+  // app.get('/api/test/priv', requireLogin, (req, res) => {
+  //   res.send(req.user);
+  // });
+
+  // // TEST pub route
+  // app.get('/api/test/pub', (req, res) => {
+  //   res.send(req.user);
+  // });
 };

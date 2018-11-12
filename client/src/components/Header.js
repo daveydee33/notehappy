@@ -28,8 +28,12 @@ class Header extends Component {
         // the user is logged in
         return (
           <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <span className="navbar-text text-dark">
+                {this.props.auth.name}
+              </span>
+            </li>
             {/* Logout */}
-
             <li className="nav-item">
               <a className="nav-link" href="/api/logout">
                 Logout

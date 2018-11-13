@@ -65,7 +65,7 @@ class Header extends Component {
             <ul className="navbar-nav mr-auto">
               {/* Collections */}
               <li className="nav-item">
-                <Link className="nav-link" to="#">
+                <Link className="nav-link" to="/items">
                   Dashboard
                 </Link>
               </li>

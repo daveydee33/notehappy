@@ -5,8 +5,8 @@ import * as actions from '../actions'; // ie,  ../actions/index.js.  Assign all 
 
 import Header from './Header';
 import Landing from './Landing';
+import Dashboard from './Dashboard';
 
-const Dashboard = () => <h2>Dashboard</h2>;
 const ItemNew = () => <h2>ItemNew</h2>;
 
 class App extends Component {

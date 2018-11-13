@@ -6,7 +6,14 @@ class ItemForm extends Component {
   renderFormFields() {
     return (
       <div>
-        <Field type="text" name="title" component={ItemFormField} />
+        <Field
+          label="Title"
+          type="text"
+          name="title"
+          component={ItemFormField}
+        />
+        <Field label="Body" type="text" name="body" component={ItemFormField} />
+        <Field label="Tags" type="text" name="tags" component={ItemFormField} />
       </div>
     );
   }

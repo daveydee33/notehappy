@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const itemSchema = new Schema({
   title: String,
   body: String,
-  // tags: [String],
+  tags: [String],
   // examples: [ExampleSchema],
   // owner: User,
   _user: { type: Schema.Types.ObjectId, ref: 'User' }, // we could just call this 'ownedBy' or anything we want, but the underscore convention indicates that it's a  'reference field' eg, has relationship with another model.

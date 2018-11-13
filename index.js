@@ -25,7 +25,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./routes/authRoutes')(app); // See: "Server Structure Refactor".  The "(app)" says to immediately invoke the previous with "app".  The 'authRoutes' exports a function.  So this code here immediately calls that function with the express 'app' object.
+// Routes
+require('./routes/authRoutes')(app);
+require('./routes/itemRoutes')(app);
+// See: "Server Structure Refactor".  The "(app)" says to immediately invoke the previous with "app".  The 'authRoutes' exports a function.  So this code here immediately calls that function with the express 'app' object.
 
 if (process.env.NODE_ENV === 'production') {
   // Express will serve up production assets

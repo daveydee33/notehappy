@@ -6,8 +6,7 @@ import * as actions from '../actions'; // ie,  ../actions/index.js.  Assign all 
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-
-const ItemNew = () => <h2>ItemNew</h2>;
+import ItemNew from './items/ItemNew';
 
 class App extends Component {
   componentDidMount() {

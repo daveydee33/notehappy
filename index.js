@@ -5,6 +5,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 require('./models/User');
+require('./models/Item');
 require('./services/passport'); // make sure to use this file, but we're not exporting anything from it, so we don't need to assign to any variable.
 
 mongoose.connect(

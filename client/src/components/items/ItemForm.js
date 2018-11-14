@@ -4,44 +4,41 @@ import { reduxForm, Field } from 'redux-form'; // the reduxForm helper to allow 
 class ItemForm extends Component {
   renderFormFields() {
     return (
-      <div className="form-group">
-        <div>
-          <label htmlFor="title">Title</label>
-
+      <div>
+        <div className="form-group">
+          {/* <label htmlFor="title">Title</label> */}
           <Field
             label="Title"
             name="title"
             component="input"
             id="title"
-            placeholder="title"
+            placeholder="Title"
             type="text"
             className="form-control form-control-lg"
           />
         </div>
 
-        <div>
-          <label htmlFor="body">Body</label>
-
+        <div className="form-group">
+          {/* <label htmlFor="body">Body</label> */}
           <Field
             label="Body"
             name="body"
             component="textarea"
             id="body"
-            placeholder="body"
+            placeholder="Body"
             type="text"
             className="form-control form-control-lg"
           />
         </div>
 
-        <div>
-          <label htmlFor="tags">Tags</label>
-
+        <div className="form-group">
+          {/* <label htmlFor="tags">Tags</label> */}
           <Field
             label="Tags"
             name="tags"
             component="input"
             id="tags"
-            placeholder="tags"
+            placeholder="Tags"
             type="text"
             className="form-control form-control-lg"
           />

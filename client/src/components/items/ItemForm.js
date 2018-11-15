@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form'; // the reduxForm helper to allow the redux form to communicate with the redux store.  Works similar to the “connect” helper function.
 import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
+import validateTags from '../../utils/validateTags';
 
 class ItemForm extends Component {
   renderFormFields() {
@@ -48,13 +49,14 @@ class ItemForm extends Component {
 function validate(values) {
   const errors = {};
 
-  if (!values.title) {
-    errors.title = 'Title needed';
-  }
+  // TODO: validate the Tags field.
+  // Don't allow multiple values of the same, empty strings, like:  '  This,,,,,is ,is,some ,bad stuff,'.
+  // This current validator will just show and error if there are invalid tags, but maybe I should just take in the tags and clean it up after submit to trip the white space, remove the empty tags, remove duplicates, special characters, trailing comma, etc. #TODO
+  errors.tags = validateTags(values.tags || '');
 
-  // if (!values.body) {
-  //   errors.body = 'Body needed';
-  // }
+  if (!values.title) {
+    errors.title = 'Required';
+  }
 
   return errors;
 }

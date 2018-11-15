@@ -5,6 +5,10 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import validateTags from '../../utils/validateTags';
 
 class ItemForm extends Component {
+  doSomething(values) {
+    console.log('boo', values);
+  }
+
   renderFormFields() {
     return (
       <div>
@@ -35,7 +39,7 @@ class ItemForm extends Component {
     return (
       <div>
         <h2>ItemForm</h2>
-        <form onSubmit={this.props.handleSubmit(values => console.log(values))}>
+        <form onSubmit={this.props.handleSubmit(this.doSomething)}>
           {this.renderFormFields()}
           <button type="submit" className="btn btn-info">
             Submit

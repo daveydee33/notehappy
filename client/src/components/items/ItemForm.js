@@ -7,14 +7,23 @@ class ItemForm extends Component {
   renderFormFields() {
     return (
       <div>
-        <Field component={TextFieldGroup} name="title" placeholder="title" />
+        <Field
+          component={TextFieldGroup}
+          name="title"
+          placeholder="Title"
+          // info="required"
+        />
 
-        <Field component={TextAreaFieldGroup} name="body" placeholder="body" />
+        <Field
+          component={TextAreaFieldGroup}
+          name="body"
+          placeholder="Detailed text"
+        />
 
         <Field
           component={TextFieldGroup}
           name="tags"
-          placeholder="tags"
+          placeholder="Tags (optional)"
           info="comma-separated list of tags"
         />
       </div>
@@ -36,6 +45,21 @@ class ItemForm extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  if (!values.title) {
+    errors.title = 'Title needed';
+  }
+
+  // if (!values.body) {
+  //   errors.body = 'Body needed';
+  // }
+
+  return errors;
+}
+
 export default reduxForm({
   form: 'itemForm',
+  validate,
 })(ItemForm);

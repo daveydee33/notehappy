@@ -52,7 +52,9 @@ function validate(values) {
   // TODO: validate the Tags field.
   // Don't allow multiple values of the same, empty strings, like:  '  This,,,,,is ,is,some ,bad stuff,'.
   // This current validator will just show and error if there are invalid tags, but maybe I should just take in the tags and clean it up after submit to trip the white space, remove the empty tags, remove duplicates, special characters, trailing comma, etc. #TODO
-  errors.tags = validateTags(values.tags || '');
+  if (values.tags) {
+    errors.tags = validateTags(values.tags || '');
+  }
 
   if (!values.title) {
     errors.title = 'Required';

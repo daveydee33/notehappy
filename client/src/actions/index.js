@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER } from './types';
+import { FETCH_USER, ADD_ITEM } from './types';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -10,11 +10,14 @@ export const fetchUser = () => async dispatch => {
   });
 };
 
-export const addNew = values => dispatch => {
-  axios
-    .post('/api/items', values)
-    .then(res => console.log('good', res))
-    .catch(err => console.log('bad', err));
+// TODO: finish the dispatch.
+export const addNew = values => async dispatch => {
+  const res = await axios.post('/api/items', values);
+
+  dispatch({
+    type: ADD_ITEM,
+    payload: res.data,
+  });
 };
 
 // export const addNew = values => async dispatch => {

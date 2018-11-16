@@ -10,7 +10,6 @@ export const fetchUser = () => async dispatch => {
   });
 };
 
-// TODO: finish the dispatch.
 export const addNew = values => async dispatch => {
   const res = await axios.post('/api/items', values);
 
@@ -19,15 +18,3 @@ export const addNew = values => async dispatch => {
     payload: res.data,
   });
 };
-
-// export const addNew = values => async dispatch => {
-//   console.log('B');
-//   const res = await axios.post('/api/items', values);
-
-//   dispatch({
-//     type: FETCH_USER,
-//     payload: res.data,
-//   });
-
-//   console.log(res);
-// };

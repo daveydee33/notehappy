@@ -5,7 +5,8 @@ const Item = mongoose.model('items');
 
 module.exports = app => {
   app.post('/api/items/', requireLogin, async (req, res) => {
-    const { title, body, tags } = req.body;
+    const { title, body } = req.body;
+    let { tags } = req.body;
 
     if (tags) {
       tags = tags.split(',').map(tag => tag.trim());

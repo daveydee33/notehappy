@@ -4,9 +4,20 @@ import { connect } from 'react-redux';
 import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import validateTags from '../../utils/validateTags';
+import { withRouter } from 'react-router-dom';
 import { addNew } from '../../actions';
 
 class ItemForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.mySubmit = this.mySubmit.bind(this);
+  }
+
+  mySubmit(values) {
+    this.props.addItem(values, this.props.history);
+  }
+
   renderFormFields() {
     return (
       <div>
@@ -37,7 +48,7 @@ class ItemForm extends Component {
     return (
       <div>
         <h2>ItemForm</h2>
-        <form onSubmit={this.props.handleSubmit(this.props.addNew)}>
+        <form onSubmit={this.props.handleSubmit(this.mySubmit)}>
           {this.renderFormFields()}
           <button type="submit" className="btn btn-info">
             Submit
@@ -67,8 +78,8 @@ function validate(values) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addNew: values => {
-      dispatch(addNew(values));
+    addItem: (values, history) => {
+      dispatch(addNew(values, history));
     },
   };
 };
@@ -81,4 +92,4 @@ ItemForm = connect(
 export default reduxForm({
   form: 'itemForm',
   validate,
-})(ItemForm);
+})(withRouter(ItemForm));

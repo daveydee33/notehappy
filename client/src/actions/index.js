@@ -10,8 +10,10 @@ export const fetchUser = () => async dispatch => {
   });
 };
 
-export const addNew = values => async dispatch => {
+export const addNew = (values, history) => async dispatch => {
   const res = await axios.post('/api/items', values);
+
+  history.push('/items');
 
   dispatch({
     type: ADD_ITEM,

@@ -4,6 +4,14 @@ const requireLogin = require('../middlewares/requireLogin');
 const Item = mongoose.model('items');
 
 module.exports = app => {
+  app.get('/api/items', requireLogin, async (req, res) => {
+    const items = await Item.find({
+      _user: req.user.id,
+    });
+
+    res.send(items);
+  });
+
   app.post('/api/items/', requireLogin, async (req, res) => {
     const { title, body } = req.body;
     let { tags } = req.body;

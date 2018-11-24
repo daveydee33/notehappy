@@ -8,13 +8,13 @@ class ItemList extends Component {
   }
 
   renderItems() {
-    if (!this.props.item) {
-      return;
+    if (!this.props.items) {
+      return; // Either we're loading still, or no records.
     }
 
     return (
       <table className="table table-hover">
-        <caption>Total: {this.props.item.length}</caption>
+        <caption>Total: {this.props.items.length}</caption>
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -34,13 +34,13 @@ class ItemList extends Component {
           </tr> 
           */}
 
-          {this.props.item.map((item, index) => {
+          {this.props.items.map((items, index) => {
             return (
-              <tr key={item._id}>
+              <tr key={items._id}>
                 <th scope="row">{(index += 1)}</th>
-                <td>{item.title}</td>
-                <td>{item.body}</td>
-                <td>{item.tags.join('|')}</td>
+                <td>{items.title}</td>
+                <td>{items.body}</td>
+                <td>{items.tags.join('|')}</td>
               </tr>
             );
           })}
@@ -61,7 +61,7 @@ class ItemList extends Component {
 
 function mapStateToProps(state) {
   return {
-    item: state.item,
+    items: state.item,
   };
 }
 

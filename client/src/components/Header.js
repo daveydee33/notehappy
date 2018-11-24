@@ -10,16 +10,10 @@ class Header extends Component {
       case false: // the user is not logged in
         return (
           <ul className="navbar-nav ml-auto">
-            {/* Register */}
-            <li className="nav-item">
-              <Link className="nav-link" to="#">
-                Register
-              </Link>
-            </li>
-            {/* Login */}
+            {/* Login & Register */}
             <li className="nav-item">
               <a className="nav-link" href="/auth/google">
-                Login
+                Login/Register
               </a>
             </li>
           </ul>

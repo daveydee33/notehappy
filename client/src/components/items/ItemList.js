@@ -3,18 +3,53 @@ import { connect } from 'react-redux';
 import { fetchItems } from '../../actions';
 
 class ItemList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      term: '',
+    };
+
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+  }
+
+  handleKeyUp(e) {
+    const term = e.target.value;
+
+    if (term && this.props.items) {
+      this.setState({
+        filtered: this.props.items.filter((value, index, array) => {
+          return value.title.includes(term);
+        }),
+      });
+    } else {
+      this.setState({
+        filtered: undefined,
+      });
+    }
+
+    // console.log(this.state);
+  }
+
   componentDidMount() {
     this.props.fetchItems();
   }
 
   renderItems() {
     if (!this.props.items) {
-      return; // Either we're loading still, or no records.
+      return <div>Loading...</div>;
+    }
+
+    let items = [];
+
+    if (this.state.filtered) {
+      items = this.state.filtered;
+    } else {
+      items = this.props.items;
     }
 
     return (
-      <table className="table table-hover">
-        <caption>Total: {this.props.items.length}</caption>
+      <table className="table table-hover" id="myTable">
+        <caption>Total: {items.length}</caption>
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -34,13 +69,17 @@ class ItemList extends Component {
           </tr> 
           */}
 
-          {this.props.items.map((items, index) => {
+          {items.map(({ _id, title, body, tags }, index) => {
+            if (body && body.length > 50) {
+              body = body.substring(0, 50).concat('...');
+            }
+
             return (
-              <tr key={items._id}>
+              <tr key={_id}>
                 <th scope="row">{(index += 1)}</th>
-                <td>{items.title}</td>
-                <td>{items.body}</td>
-                <td>{items.tags.join('|')}</td>
+                <td>{title}</td>
+                <td>{body}</td>
+                <td>{tags.join('|')}</td>
               </tr>
             );
           })}
@@ -53,6 +92,12 @@ class ItemList extends Component {
     return (
       <div>
         <div>ItemList</div>
+        <input
+          type="text"
+          id="myInput"
+          onKeyUp={this.handleKeyUp}
+          placeholder="Search by title"
+        />
         {this.renderItems()}
       </div>
     );

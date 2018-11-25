@@ -13,7 +13,7 @@ class Header extends Component {
             {/* Login & Register */}
             <li className="nav-item">
               <a className="nav-link" href="/auth/google">
-                Login/Register
+                Login
               </a>
             </li>
           </ul>
@@ -61,6 +61,11 @@ class Header extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to="/items">
                   Dashboard
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/items/new">
+                  Add Item
                 </Link>
               </li>
             </ul>

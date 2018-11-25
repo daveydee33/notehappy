@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchItems } from '../../actions';
+import { fetchItems, deleteItem } from '../../actions';
 
 class ItemList extends Component {
   constructor(props) {
@@ -10,6 +10,11 @@ class ItemList extends Component {
     };
 
     this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.onClickDelete = this.onClickDelete.bind(this);
+  }
+
+  onClickDelete(id) {
+    this.props.deleteItem(id);
   }
 
   handleKeyUp(e) {
@@ -56,6 +61,7 @@ class ItemList extends Component {
             <th scope="col">Title</th>
             <th scope="col">Body</th>
             <th scope="col">Tags</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -80,6 +86,15 @@ class ItemList extends Component {
                 <td>{title}</td>
                 <td>{body}</td>
                 <td>{tags.join('|')}</td>
+                <td>
+                  <button
+                    onClick={this.onClickDelete.bind(this, _id)}
+                    type="button"
+                    className="btn btn-danger mr-1"
+                  >
+                    <i className="fas fa-times" />
+                  </button>
+                </td>
               </tr>
             );
           })}
@@ -112,5 +127,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchItems },
+  { fetchItems, deleteItem },
 )(ItemList);

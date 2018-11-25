@@ -6,7 +6,7 @@ class ItemList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      term: '',
+      searchFilter: '',
     };
 
     this.handleKeyUp = this.handleKeyUp.bind(this);
@@ -18,21 +18,9 @@ class ItemList extends Component {
   }
 
   handleKeyUp(e) {
-    const term = e.target.value;
-
-    if (term && this.props.items) {
-      this.setState({
-        filtered: this.props.items.filter((value, index, array) => {
-          return value.title.includes(term);
-        }),
-      });
-    } else {
-      this.setState({
-        filtered: undefined,
-      });
-    }
-
-    // console.log(this.state);
+    this.setState({
+      searchFilter: e.target.value.toUpperCase(),
+    });
   }
 
   componentDidMount() {
@@ -40,17 +28,17 @@ class ItemList extends Component {
   }
 
   renderItems() {
-    if (!this.props.items) {
+    let items = this.props.items;
+    const searchFilter = this.state.searchFilter;
+
+    if (!items) {
       return <div>Loading...</div>;
     }
 
-    let items = [];
-
-    if (this.state.filtered) {
-      items = this.state.filtered;
-    } else {
-      items = this.props.items;
-    }
+    // Apply the search filter to the items list
+    items = items.filter(item => {
+      return item.title.toUpperCase().includes(searchFilter); // only if it includes search string filter
+    });
 
     return (
       <table className="table table-hover" id="myTable">
@@ -65,17 +53,8 @@ class ItemList extends Component {
           </tr>
         </thead>
         <tbody>
-          {/* Example */}
-          {/* 
-          <tr>
-            <th scope="row">1</th>
-            <td>A</td>
-            <td>B</td>
-            <td>C</td>
-          </tr> 
-          */}
-
           {items.map(({ _id, title, body, tags }, index) => {
+            // Truncate body if long
             if (body && body.length > 50) {
               body = body.substring(0, 50).concat('...');
             }

@@ -9,69 +9,44 @@ class Header extends Component {
         return;
       case false: // the user is not logged in
         return (
-          <ul className="navbar-nav ml-auto">
-            {/* Login & Register */}
-            <li className="nav-item">
-              <a className="nav-link" href="/auth/google">
-                Login
-              </a>
-            </li>
-          </ul>
+          <div className="right menu">
+            <a className="item" href="/auth/google">
+              Login
+            </a>
+          </div>
         );
       default:
         // the user is logged in
         return (
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <span className="navbar-text text-dark">
-                {this.props.auth.name}
-              </span>
-            </li>
+          <div className="right menu">
+            <span className="item disabled">{this.props.auth.name}</span>
             {/* Logout */}
-            <li className="nav-item">
-              <a className="nav-link" href="/api/logout">
-                Logout
-              </a>
-            </li>
-          </ul>
+            <a className="item" href="/api/logout">
+              Logout
+            </a>
+          </div>
         );
     }
   }
 
   render() {
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
-        <div className="container">
+      <nav className="ui  menu navbar large">
+        <div className="ui container">
           {/* If user logged in, take them to /items.  Otherwise, take them to '/' */}
-          <Link to={this.props.auth ? '/items' : '/'} className="navbar-brand">
+          <Link to={this.props.auth ? '/' : '/'} className="header item">
             NoteHappy
           </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#mobile-nav"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
 
-          <div className="collapse navbar-collapse" id="mobile-nav">
-            <ul className="navbar-nav mr-auto">
-              {/* Collections */}
-              <li className="nav-item">
-                <Link className="nav-link" to="/items">
-                  Dashboard
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/items/new">
-                  Add Item
-                </Link>
-              </li>
-            </ul>
+          {/* Collections */}
+          <Link className="item" to="/items">
+            Dashboard
+          </Link>
+          <Link className="item" to="/items/new">
+            Add Item
+          </Link>
 
-            {this.renderContent()}
-          </div>
+          {this.renderContent()}
         </div>
       </nav>
     );

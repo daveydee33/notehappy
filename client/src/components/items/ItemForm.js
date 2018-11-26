@@ -50,8 +50,8 @@ class ItemForm extends Component {
         <h2>ItemForm</h2>
         <form onSubmit={this.props.handleSubmit(this.mySubmit)}>
           {this.renderFormFields()}
-          <button type="submit" className="btn btn-info">
-            Submit
+          <button type="submit" className="ui primary button">
+            Add
           </button>
         </form>
       </div>

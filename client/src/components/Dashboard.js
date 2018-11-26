@@ -7,7 +7,7 @@ const Dashboard = () => {
     <div>
       <h1>Dashboard</h1>
       <ItemList />
-      <Link to="/items/new" className="btn btn-info btn-md" role="button">
+      <Link to="/items/new" className="ui primary button" role="button">
         Add New
       </Link>
     </div>

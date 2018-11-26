@@ -24,7 +24,7 @@ class ItemList extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchItems();
+    this.props.fetchItems(); // React docs say put "data loading" in componentDidMount and _not_ in the constructor function.
   }
 
   renderItems() {
@@ -41,7 +41,8 @@ class ItemList extends Component {
     });
 
     return (
-      <table className="table table-hover" id="myTable">
+      <table className="ui striped selectable table">
+        {/* TODO: If we want to make this sortable - https://semantic-ui.com/collections/table.html#sortable */}
         <caption>Total: {items.length}</caption>
         <thead>
           <tr>
@@ -69,9 +70,10 @@ class ItemList extends Component {
                   <button
                     onClick={this.onClickDelete.bind(this, _id)}
                     type="button"
-                    className="btn btn-danger mr-1"
+                    className="ui compact labeled icon button basic"
                   >
-                    <i className="fas fa-times" />
+                    <i className="trash icon red" />
+                    Delete
                   </button>
                 </td>
               </tr>
@@ -85,13 +87,29 @@ class ItemList extends Component {
   render() {
     return (
       <div>
-        <div>ItemList</div>
-        <input
-          type="text"
-          id="myInput"
-          onKeyUp={this.handleKeyUp}
-          placeholder="Search by title"
-        />
+        <h1>Items</h1>
+
+        {/* 
+        TODO: fix this search option dropdown to show search options for Body, Everything, etc.  Might need to Semantic UI javascript file.  Also need to modify the functionality in this component.  Currently only searches Title.  
+        */}
+        <div className="ui large right action left icon input">
+          <i className="search icon" />
+          <input
+            type="text"
+            id="myInput"
+            onKeyUp={this.handleKeyUp}
+            placeholder="Search..."
+          />
+          <div className="ui basic floating dropdown button">
+            <div className="text">Title</div>
+            <i className="dropdown icon" />
+            <div className="menu">
+              <div className="item">Body</div>
+              <div className="item">Everything</div>
+            </div>
+          </div>
+        </div>
+
         {this.renderItems()}
       </div>
     );

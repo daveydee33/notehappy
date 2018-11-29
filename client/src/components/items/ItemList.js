@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchItems, deleteItem } from '../../actions';
+import Spinner from '../Spinner';
 
 class ItemList extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class ItemList extends Component {
     const searchFilter = this.state.searchFilter;
 
     if (!items) {
-      return <div>Loading...</div>;
+      return <Spinner />;
     }
 
     // Apply the search filter to the items list

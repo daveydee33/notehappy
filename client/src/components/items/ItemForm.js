@@ -31,7 +31,7 @@ class ItemForm extends Component {
         <Field
           component={TextAreaFieldGroup}
           name="body"
-          placeholder="Detailed text"
+          placeholder="Details"
         />
 
         <Field
@@ -48,7 +48,10 @@ class ItemForm extends Component {
     return (
       <div>
         <h2>ItemForm</h2>
-        <form onSubmit={this.props.handleSubmit(this.mySubmit)}>
+        <form
+          onSubmit={this.props.handleSubmit(this.mySubmit)}
+          className="ui form"
+        >
           {this.renderFormFields()}
           <button type="submit" className="ui primary button">
             Add

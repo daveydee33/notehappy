@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class Header extends Component {
   renderContent() {
     switch (this.props.auth) {
-      case null: // we don't know yet if the user is logged in or not
+      case null: // we don't know yet if the user is logged in or not.  Maybe put a spinner or disabled links instead of nothing?
         return;
       case false: // the user is not logged in
         return (
@@ -31,10 +31,10 @@ class Header extends Component {
 
   render() {
     return (
-      <nav className="ui  menu navbar large">
+      <nav className="ui menu navbar inverted large">
         <div className="ui container">
           {/* If user logged in, take them to /items.  Otherwise, take them to '/' */}
-          <Link to={this.props.auth ? '/' : '/'} className="header item">
+          <Link className="header item" to={this.props.auth ? '/' : '/'}>
             NoteHappy
           </Link>
 

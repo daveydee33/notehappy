@@ -38,7 +38,13 @@ class ItemList extends Component {
 
     // Apply the search filter to the items list
     items = items.filter(item => {
-      return item.title.toUpperCase().includes(searchFilter); // only if it includes search string filter
+      // Had to made this much more complicated because I had some records added without title value and the string.toUpperCase method choked.
+      // if item.title doesn't exist, or if it matches the search filter, keep it included in the array
+      if (!item.title || item.title.toUpperCase().includes(searchFilter)) {
+        return true;
+      } else {
+        return false;
+      }
     });
 
     return (

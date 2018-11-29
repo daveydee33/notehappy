@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   googleId: String,
   name: String,
+  dateCreated: { type: Date, default: Date.now },
 });
 
 mongoose.model('users', userSchema);

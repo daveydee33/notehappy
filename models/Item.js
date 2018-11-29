@@ -8,8 +8,8 @@ const itemSchema = new Schema({
   // examples: [ExampleSchema],
   // owner: User,
   _user: { type: Schema.Types.ObjectId, ref: 'User' }, // we could just call this 'ownedBy' or anything we want, but the underscore convention indicates that it's a  'reference field' eg, has relationship with another model.
-  dateCreated: { Date },
-  dateModified: { Date },
+  dateCreated: { type: Date, default: Date.now },
+  dateLastModified: { type: Date, default: Date.now },
 });
 
 mongoose.model('items', itemSchema);

@@ -7,18 +7,9 @@ import { withRouter } from 'react-router-dom';
 import { addNew } from '../actions';
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-
-    this.onSubmitQuickAdd = this.onSubmitQuickAdd.bind(this);
-  }
-
-  onSubmitQuickAdd(values) {
-    // need to pass values here and do something.
-    // console.log(values);
-    console.log('...onSubmitQuickAdd', values);
+  onSubmitQuickAdd = values => {
     this.props.addItem(values, this.props.history);
-  }
+  };
 
   render() {
     return (

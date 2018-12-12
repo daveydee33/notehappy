@@ -8,24 +8,18 @@ import { withRouter } from 'react-router-dom';
 import { addNew } from '../../actions';
 
 class ItemForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.mySubmit = this.mySubmit.bind(this);
-  }
-
-  mySubmit(values) {
-    this.props.addItem(values, this.props.history);
-  }
+  onSubmit = formValues => {
+    this.props.addItem(formValues, this.props.history);
+  };
 
   renderFormFields() {
     return (
-      <div>
+      <div className="field">
         <Field
           component={TextFieldGroup}
           name="title"
           placeholder="Title"
-          // info="required"
+          // info="title or details is required"
         />
 
         <Field
@@ -49,11 +43,11 @@ class ItemForm extends Component {
       <div>
         <h2>ItemForm</h2>
         <form
-          onSubmit={this.props.handleSubmit(this.mySubmit)}
-          className="ui form"
+          onSubmit={this.props.handleSubmit(this.onSubmit)}
+          className="ui form error warning"
         >
           {this.renderFormFields()}
-          <button type="submit" className="ui primary button">
+          <button type="submit" className="ui button primary">
             Add
           </button>
         </form>
@@ -72,8 +66,9 @@ function validate(values) {
     errors.tags = validateTags(values.tags);
   }
 
-  if (!values.title) {
-    errors.title = 'Required';
+  if (!values.title && !values.body) {
+    errors.title = 'Title or Description is required.';
+    errors.body = 'Title or Description is required.';
   }
 
   return errors;

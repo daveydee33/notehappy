@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ItemList from './items/ItemList';
+import ItemList from './Item/ItemList';
 import QuickAdd from './QuickAdd';
 import { withRouter } from 'react-router-dom';
 import { addItem } from '../actions';

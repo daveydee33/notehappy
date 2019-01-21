@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ItemList from './items/ItemList';
 import QuickAdd from './QuickAdd';
 import { withRouter } from 'react-router-dom';
-import { addNew } from '../actions';
+import { addItem } from '../actions';
 
 class Dashboard extends Component {
   onSubmitQuickAdd = values => {
@@ -28,7 +28,7 @@ class Dashboard extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     addItem: (values, history) => {
-      dispatch(addNew(values, history));
+      dispatch(addItem(values, history));
     },
   };
 };

@@ -5,7 +5,7 @@ import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import validateTags from '../../utils/validateTags';
 import { withRouter } from 'react-router-dom';
-import { addNew } from '../../actions';
+import { addItem } from '../../actions';
 
 class ItemForm extends Component {
   onSubmit = formValues => {
@@ -77,7 +77,7 @@ function validate(values) {
 const mapDispatchToProps = dispatch => {
   return {
     addItem: (values, history) => {
-      dispatch(addNew(values, history));
+      dispatch(addItem(values, history));
     },
   };
 };

@@ -19,7 +19,7 @@ export const fetchItems = () => async dispatch => {
   });
 };
 
-export const addNew = (values, history) => async dispatch => {
+export const addItem = (values, history) => async dispatch => {
   const res = await axios.post('/api/items', values);
 
   history.push('/items');
@@ -31,7 +31,7 @@ export const addNew = (values, history) => async dispatch => {
 };
 
 export const deleteItem = id => async dispatch => {
-  const res = await axios.delete(`/api/item/${id}`);
+  const res = await axios.delete(`/api/items/${id}`);
 
   dispatch({
     type: DELETE_ITEM,

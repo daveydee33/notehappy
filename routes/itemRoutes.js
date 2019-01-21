@@ -4,10 +4,10 @@ const requireLogin = require('../middlewares/requireLogin');
 const Item = mongoose.model('items');
 
 module.exports = app => {
-  // @route   GET api/item/:id
+  // @route   GET api/items/:id
   // @desc    Get single item by ID
   // @access  Private
-  app.get('/api/item/:id', requireLogin, async (req, res) => {
+  app.get('/api/items/:id', requireLogin, async (req, res) => {
     const id = req.params.id;
 
     const item = await Item.findOne({
@@ -19,10 +19,10 @@ module.exports = app => {
     res.send(item);
   });
 
-  // @route   DELETE api/item/:id
+  // @route   DELETE api/items/:id
   // @desc    Delete single item by ID
   // @access  Private
-  app.delete('/api/item/:id', requireLogin, async (req, res) => {
+  app.delete('/api/items/:id', requireLogin, async (req, res) => {
     const id = req.params.id;
 
     const item = await Item.findOneAndDelete({
@@ -34,6 +34,9 @@ module.exports = app => {
     res.send(item);
   });
 
+  // @route   GET api/items
+  // @desc    Get all items
+  // @access  Private
   app.get('/api/items', requireLogin, async (req, res) => {
     const items = await Item.find({
       _user: req.user.id,
@@ -42,7 +45,10 @@ module.exports = app => {
     res.send(items);
   });
 
-  app.post('/api/items/', requireLogin, async (req, res) => {
+  // @route   POST api/items
+  // @desc    Create a new item
+  // @access  Private
+  app.post('/api/items', requireLogin, async (req, res) => {
     const { title, body } = req.body;
     let { tags } = req.body;
 

@@ -1,0 +1,51 @@
+body {
+  min-height: 2000px;
+}
+
+.ui.container.give-it-some-space-after-the-titlebar {
+  /* had to add this so that the large nav bar doesn't cover the main body of the app */
+  margin-top: 7em;
+}
+
+.ui.borderless.huge.menu {
+  background-color: #f8f8f8;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+.ui.borderless.huge.menu .row > a.header.item {
+  font-size: 1.2em;
+}
+
+.ui.vertical.menu {
+  display: none;
+  border: none;
+  box-shadow: none;
+  background-color: #f8f8f8;
+}
+.ui.vertical.menu > .item {
+  padding-left: 1.428em;
+}
+.ui.vertical.menu .item .title .dropdown.icon {
+  float: none;
+}
+.ui.vertical.menu .item .content .item {
+  padding: 0.5em 1em;
+}
+.ui.vertical.menu .header.item {
+  text-transform: uppercase;
+}
+
+.ui.message {
+  background-color: rga(238, 238, 238);
+  box-shadow: none;
+  padding: 5em 4em;
+}
+.ui.message h1.ui.header {
+  font-size: 4.5em;
+}
+.ui.message p.lead {
+  font-size: 1.3em;
+  color: #333333;
+  line-height: 1.4;
+  font-weight: 300;
+}

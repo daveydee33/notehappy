@@ -18,7 +18,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Header />
-          <div className="ui container">
+          <div className="ui container give-it-some-space-after-the-titlebar">
             <Route exact path="/" component={Landing} />
             <Route exact path="/items" component={Dashboard} />
             <Route path="/items/new" component={ItemNew} />

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class Header extends Component {
   renderContent() {
     switch (this.props.auth) {
-      case null: // we don't know yet if the user is logged in or not.  Maybe put a spinner or disabled links instead of nothing?
+      case null: // we don't know yet if the user is logged in or not. TODO: Maybe put a spinner or disabled links instead of nothing?
         return;
       case false: // the user is not logged in
         return (
@@ -19,7 +19,9 @@ class Header extends Component {
         // the user is logged in
         return (
           <div className="right menu">
-            <span className="item disabled">{this.props.auth.name}</span>
+            <span className="item light">
+              <b>{this.props.auth.name}</b>
+            </span>
             {/* Logout */}
             <a className="item" href="/api/logout">
               Logout
@@ -31,22 +33,26 @@ class Header extends Component {
 
   render() {
     return (
-      <nav className="ui menu navbar inverted large">
-        <div className="ui container">
-          {/* If user logged in, take them to /items.  Otherwise, take them to '/' */}
-          <Link className="header item" to={this.props.auth ? '/' : '/'}>
-            NoteHappy
-          </Link>
+      <nav className="ui fixed borderless huge menu">
+        <div className="ui container grid">
+          <div className="computer only row">
+            {/* If user logged in, take them to /items.  Otherwise, take them to '/' */}
+            <Link className="header item" to={this.props.auth ? '/' : '/'}>
+              NoteHappy
+            </Link>
 
-          {/* Collections */}
-          <Link className="item" to="/items">
-            Dashboard
-          </Link>
-          <Link className="item" to="/items/new">
-            Add Item
-          </Link>
+            {/* Collections */}
+            <Link className="item" to="/items">
+              Dashboard
+            </Link>
+            <Link className="item" to="/items/new">
+              Add Item
+            </Link>
 
-          {this.renderContent()}
+            {this.renderContent()}
+          </div>
+          <div className="tablet mobile only row" />
+          {/* TODO: Add tablet responsive header items here... */}
         </div>
       </nav>
     );

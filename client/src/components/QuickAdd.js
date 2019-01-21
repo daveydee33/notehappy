@@ -23,27 +23,32 @@ class QuickAdd extends Component {
               type="text"
               name="title"
               id="title"
+              placeholder="Title"
               value={this.state.title}
               onChange={e => this.setState({ title: e.target.value })}
             />
           </div>
-          <div className="field">
-            <input
-              type="text"
-              name="tags"
-              id="tags"
-              value={this.state.tags}
-              onChange={e => this.setState({ tags: e.target.value })}
-            />
-          </div>
+
           <div className="field">
             <textarea
               name="body"
               id="body"
               cols="30"
               rows="10"
+              placeholder="Body"
               value={this.state.body}
               onChange={e => this.setState({ body: e.target.value })}
+            />
+          </div>
+
+          <div className="field">
+            <input
+              type="text"
+              name="tags"
+              id="tags"
+              placeholder="Tags (separated by commas)"
+              value={this.state.tags}
+              onChange={e => this.setState({ tags: e.target.value })}
             />
           </div>
 

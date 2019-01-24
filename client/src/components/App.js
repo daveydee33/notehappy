@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions'; // ie,  ../actions/index.js.  Assign all of the actions to this 'actions' object.
 
@@ -8,6 +8,9 @@ import Landing from './Landing';
 import Dashboard from './Dashboard';
 import ItemNew from './Item/ItemNew';
 
+import history from '../history';
+// Using Router + history is an alternative way to just using the BrowserRouter option.
+
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
@@ -15,7 +18,7 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <div className="App">
           <Header />
           <div className="ui container give-it-some-space-after-the-titlebar">
@@ -24,7 +27,7 @@ class App extends Component {
             <Route path="/items/new" component={ItemNew} />
           </div>
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }

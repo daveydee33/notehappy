@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form'; // the reduxForm helper to allow the redux form to communicate with the redux store.  Works similar to the “connect” helper function.
-import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form'; // the reduxForm helper to allow the redux form to communicate with the redux store.  Works similar to the “connect” helper function.
 import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import validateTags from '../../utils/validateTags';
 import { withRouter } from 'react-router-dom';
-import { addItem } from '../../actions';
 
 class ItemForm extends Component {
   onSubmit = formValues => {
-    this.props.addItem(formValues, this.props.history);
+    this.props.onSubmit(formValues);
   };
 
   renderFormFields() {
@@ -73,19 +71,6 @@ function validate(values) {
 
   return errors;
 }
-
-const mapDispatchToProps = dispatch => {
-  return {
-    addItem: (values, history) => {
-      dispatch(addItem(values, history));
-    },
-  };
-};
-
-ItemForm = connect(
-  null,
-  mapDispatchToProps,
-)(ItemForm);
 
 export default reduxForm({
   form: 'itemForm',

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { FETCH_USER, FETCH_ITEMS, ADD_ITEM, DELETE_ITEM } from './types';
 
+import history from '../history';
+
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
 
@@ -19,15 +21,16 @@ export const fetchItems = () => async dispatch => {
   });
 };
 
-export const addItem = (values, history) => async dispatch => {
+export const addItem = values => async dispatch => {
   const res = await axios.post('/api/items', values);
-
-  history.push('/items');
 
   dispatch({
     type: ADD_ITEM,
     payload: res.data,
   });
+
+  // And then redirect
+  history.push('/items');
 };
 
 export const deleteItem = id => async dispatch => {

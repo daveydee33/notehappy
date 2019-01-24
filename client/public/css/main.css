@@ -7,6 +7,11 @@ body {
   margin-top: 7em;
 }
 
+/* Not sure if this is the best way to target this, but adding space at the bottom of the table before the Add New button */
+.ui.table:last-child {
+  margin-bottom: 10px;
+}
+
 .ui.borderless.huge.menu {
   background-color: #f8f8f8;
   margin-top: 0;
